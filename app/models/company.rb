@@ -11,6 +11,7 @@ class Company < ApplicationRecord
   end
 
   def expire_cache
-    ActionController::Base.new.expire_fragment('table_of_all_companies')
+    ActionController::Base.expire_page(Rails.application.routes.url_helpers.company_path(self))
+    ActionController::Base.expire_page(Rails.application.routes.url_helpers.companies_path)
   end
 end
